@@ -1,0 +1,55 @@
+/* Solution for leetcode #345 Write a function that takes a string as input and reverse only the vowels of a string.
+
+Example 1:
+
+Input: "hello"
+Output: "holle"
+Example 2:
+
+Input: "leetcode"
+Output: "leotcede" */
+
+class Solution {
+public:
+    string reverseVowels(string str) {
+        
+        char* cstr = new char [str.length()+1];
+        std::strcpy (cstr, str.c_str());
+        
+        // set two pointers one at the beginning and other at the end.
+        char* begin = cstr;
+        char* end = cstr + (str.length() - 1);
+        
+        while( begin < end)
+        {
+            if( *begin == 'a' || *begin == 'e' || *begin == 'i' ||
+                *begin == 'o' || *begin == 'u'|| *begin == 'A' || 
+                *begin == 'E' || *begin == 'I' || *begin == 'O' || 
+                *begin == 'U')
+            {
+                // move the end pointer till we hit a vowel
+               while( end > begin)
+               {
+                    if( *end == 'a' || *end == 'e' || *end == 'i' ||
+                        *end == 'o' || *end == 'u' || *end == 'A' || 
+                        *end == 'E' ||*end == 'I' || *end == 'O' || 
+                        *end == 'U' )
+                    {
+                        char temp = *begin;
+                        *begin = *end;
+                        *end = temp;
+                        end--;
+                        break;
+                    }
+                    end--;
+               }
+            }
+            begin++;
+        }
+        
+        string retString = string(cstr);
+        
+        return retString;
+        
+    }
+};
