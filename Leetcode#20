@@ -1,0 +1,50 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        
+        if(s.empty())
+            return true;
+        
+        int length = s.length();
+        
+        // if there are odd number of parenthesis we should return as there won't be a matching pair for one of those
+        if( length%2 )
+            return false;
+        
+        std::stack<char> stack1;
+        char c;
+        // go through the entire string character by character
+        for( int i = 0; i < length; i++)
+        {
+            // check if it is end of any parenthesis
+            if( s[i] == '}' || s[i] == ']' || s[i] == ')')
+            {
+                if(stack1.empty())
+                    return false;
+                
+                c = stack1.top();
+                stack1.pop();
+                
+                if( (c == '{' && s[i] == '}') ||
+                   (c == '(' && s[i] == ')') ||
+                   (c == '[' && s[i] == ']') )
+                {
+                    continue;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if ( s[i] == '{' || s[i] == '[' || s[i] == '(')
+            {
+                stack1.push(s[i]);
+            }
+        }
+        
+        if(!stack1.empty())
+            return false;
+        
+        return true;
+    }
+};
