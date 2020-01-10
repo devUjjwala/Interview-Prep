@@ -1,0 +1,30 @@
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        
+        if(nums.empty())
+            return false;
+        
+        // hash table containing the integer present and the ey is how many times it occurs.
+        std::map<int,int> hashTable;
+        std::map<int,int>::iterator it;
+       
+        for(int i = 0; i < nums.size(); i++)
+        {
+            it = hashTable.find( nums[i]);
+            
+            if( it != hashTable.end())
+                hashTable[nums[i]]++;
+            else
+                hashTable.insert( std::pair<int, int> ( nums[i], 1));
+        }
+        
+         for ( it = hashTable.begin(); it != hashTable.end(); ++it)
+         {
+             if( it -> second > 1)
+                 return true;
+         }
+        
+        return false;
+    }
+};
