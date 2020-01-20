@@ -1,0 +1,28 @@
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        if(s.empty())
+            return true;
+        
+        if(t.empty())
+            return false;
+        
+        int j = 0;
+        
+        // check each character by character
+        for( int i = 0; i < t.length(); i++)
+        {
+            // Characters match then increment subsequence string's index.
+            if( t[i] == s[j])
+                j++;
+                
+        }
+        
+        // if we did not finish the s string that means we do not have a subsequence.
+        if( j < s.length())
+            return false;
+        
+        return true;
+        
+    }
+};
