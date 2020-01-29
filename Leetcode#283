@@ -1,0 +1,37 @@
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        
+        int length = nums.size();
+        
+        if( length == 1 || length == 0)
+            return;
+        
+        
+        int i = 0, j = 0 , temp = 0;
+        
+        // it is a two pinter approach, more like 2 indices. Find the first zero and then move the other
+        // index to the first non zero and then swap the zero and non zero number.
+        while( i < length && j < length)
+        {
+            if( nums[i] == 0)
+            {
+                while( nums[j] == 0)
+                {
+                    j++;
+                    
+                    if( j >= length)
+                        return;
+                }
+                
+                temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+            }
+            
+            i++;
+            j++;
+        }
+        
+    }
+};
