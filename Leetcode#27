@@ -1,0 +1,57 @@
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        
+        int len = nums.size();
+        
+        // Boundary conditions
+        if( len == 0)
+            return 0;
+        
+        if( len == 1 )
+        {
+            if( nums[0] == val)
+                return 0;
+            else
+                return 1;
+        }
+        
+        int start = 0, end = len - 1, count = 0;
+        
+        // loop through to find out
+        while( start <= end)
+        {
+            if(nums[start] == val)
+            {
+                if( nums[end] == val)
+                {
+                    end--;
+                    count++;
+                }
+                else
+                {
+                    int temp = nums[start];
+                    nums[start] = nums[end];
+                    nums[end] = temp;
+                    
+                    end--;
+                    count++;
+                    start++;
+                }
+            } // start matches the val
+            else if( nums[end] == val)
+            {
+                end--;
+                count++;
+                start++;
+            } 
+            else
+            {
+                start++;
+            }
+        }
+        
+        return (len - count);
+        
+    }
+};
