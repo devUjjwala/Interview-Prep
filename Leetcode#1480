@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> runningSum(vector<int>& nums) {
+        
+        // check if the vector is empty or has only one element
+        if( nums.empty() == true)
+            return nums;
+        
+        if( nums.size() == 1)
+            return nums;
+        
+        // allocate a vector to return
+        vector<int> runningSum;
+        runningSum.push_back(nums[0]);
+       
+        
+        for( int i = 1; i < nums.size(); i++)
+        {   
+            // Add the runningSum from the new vector to the current item at nums[i]
+            runningSum.push_back( nums[i] + runningSum[i-1]);
+        }
+        
+        return runningSum;
+        
+    }
+};
