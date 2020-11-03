@@ -1,0 +1,44 @@
+class Solution {
+public:
+    int diagonalSum(vector<vector<int>>& mat) {
+        
+        // error condition check
+        if( mat.empty() || mat[0].empty())
+            return 0;
+        
+        // if size if 1, just return the element
+        if( mat.size() == 1)
+        {
+            return mat[0][0];
+        }
+        
+        int primaryDiagonal = 0, secondaryDiagonal = 0, n = mat.size();
+        
+        // Calculate both the diagonal sums
+        for( int i = 0; i < n; i++)
+        {
+            //cout << "\nmat["<< i << "," << i << "]\n";
+            
+            primaryDiagonal = primaryDiagonal + mat[i][i];
+            
+            /*cout << "primaryDiagonal = " << primaryDiagonal << "\n"; 
+            cout << "\nmat[" << i << "," <<  n-(i+1) << "]\n"; */
+            
+            secondaryDiagonal = secondaryDiagonal + mat[i][n-(i+1)];
+            
+            //cout << "secondaryDiagonal = " << secondaryDiagonal << "\n";
+        }
+        
+        // if the matrix has even number of elements only matters for secondaryDiagonal calculation.
+        int odd = n/2;
+        
+        //cout << "odd = " << odd << "\n";
+        
+        if( n%2 > 0)
+        {
+            secondaryDiagonal = secondaryDiagonal - mat[odd][odd];
+        }
+        
+        return (primaryDiagonal+secondaryDiagonal);
+    }
+};
