@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        
+        // this is a sliding window problem with an auxillary data structure
+        
+        int complement = 0;
+        map<int,int> hashMap;
+        
+        for( int index = 0; index < nums.size(); index++)
+        {
+            complement = target - nums[index];
+            
+            if( hashMap.find(complement) != hashMap.end())
+            {
+                vector<int> retVector;
+                retVector.push_back( hashMap[complement]);
+                retVector.push_back( index);
+                return retVector;
+            }
+            
+            hashMap.insert( std::pair<int, int> (nums[index], index));
+        }
+        
+        //nothing found so return NULL ??
+        throw( "no two sum solution");
+    }
+};
