@@ -1,0 +1,36 @@
+class Solution {
+public:
+    vector<vector<int>> matrixReshape(vector<vector<int>>& mat, int r, int c) {
+        
+        // first check if the inoput can be reshaped into the output matrix
+        int rows = mat.size();
+        int cols = mat[0].size();
+        
+        if( rows == 0 || (r*c) != (rows*cols))
+            return mat;
+        
+        list<int> linkedList;
+        
+        // vector with r rows and c columns
+        vector<vector<int>> output(r, vector<int>(c));
+        int row_Output = 0, col_Output = 0;
+        
+        
+        for( int i = 0; i < rows; i++)
+        {
+            for( int j = 0; j < cols; j++)
+            {
+                output[row_Output][col_Output] = mat[i][j];
+                col_Output++;
+                
+                if(col_Output == c)
+                {
+                    col_Output = 0;
+                    row_Output++;
+                }
+            }
+        }
+        
+        return output;
+    }
+};
