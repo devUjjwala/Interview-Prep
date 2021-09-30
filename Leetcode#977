@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        
+        int length = nums.size();
+        
+        vector<int> output(length);
+        int left = 0, right = length - 1, curr = 0;
+        
+        for(int i = length - 1; i >= 0; i--)
+        {
+            // if the numbers in the input are negative the square will be +ve
+            if( abs(nums[left]) < abs(nums[right]))
+            {
+                curr = right;
+                right--;
+            }
+            else
+            {
+                curr = left;
+                left++;
+            }
+            output[i] =  nums[curr] * nums[curr];
+        }
+        
+        return output;
+        
+    }
+};
