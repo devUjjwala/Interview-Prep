@@ -1,0 +1,30 @@
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        
+        k = k % nums.size();
+        reverse(nums.begin(), nums.end());
+        reverse(nums.begin(), nums.begin() + k);
+        reverse(nums.begin() + k, nums.end());
+        
+    /*    k = k % length;
+        
+        int count = 0;
+        int current, prev, next, temp;
+        
+        for( int start = 0; count < length; start++)
+        {
+            current = start;
+            prev = nums[start];
+            do {
+                next = ( current + k) % length;
+                temp = nums[next];
+                nums[next] = prev;
+                prev = temp;
+                current = next;
+                count++;
+            } while( start != current);
+        }*/
+        
+    }
+};
