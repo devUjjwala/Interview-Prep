@@ -1,0 +1,33 @@
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        
+        // Case 1: Null Linked List
+        if( head == NULL)
+        {
+            return head;
+        }
+        
+        // Case 2: Regular Linked List
+        ListNode* curr = head;
+        while( curr != NULL && curr->next != NULL)
+        {
+            if( curr -> next -> val == val)
+            {
+                curr -> next = curr -> next -> next;
+            }
+            else
+            {
+                curr = curr -> next;
+            }
+        }
+        
+        //Case 3: Single Element Linked List
+        if( head -> val == val)
+        {
+            head = head -> next;
+        }
+        
+        return head;   
+    }
+};
